@@ -103,7 +103,12 @@ export const getReportByName = async (path,setdata,settotal, settotalItem) => {
     return res;
   } 
   catch (err) {
-    toast.error(err.response.data.error,{ duration : 1500});
+    if(err.response.data.error === "name parameter is required."){
+      toast.error(err.response.data.error,{ duration : 1500});
+    }
+    else{
+      toast.error(err.response.data.message,{ duration : 1500});
+    }
   }
 };
 

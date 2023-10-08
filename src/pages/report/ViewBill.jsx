@@ -1,12 +1,6 @@
 import React, { useRef, useState } from "react";
 import ReactToPrint from "react-to-print";
-import {
-  ArrowBigLeftDash,
-  DoorClosed,
-  Printer,
-  Save,
-  XCircle,
-} from "lucide-react";
+import { Printer, XCircle,} from "lucide-react";
 import logoImage from "../../assets/logo.svg";
 import numWords from "num-words";
 

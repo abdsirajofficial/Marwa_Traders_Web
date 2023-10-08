@@ -43,7 +43,7 @@ export const Editproduct = ({ setViewMode, data, editProductIndex }) => {
     };
 
     editApi(`product/editProducts/${editProductId}`,data).then((res) => {
-      if (res.statusText === 'OK') {
+      if (res.status === 200) {
         toast.success('Material update successfully!', { duration : 1500 });
         setViewMode("view")
       }

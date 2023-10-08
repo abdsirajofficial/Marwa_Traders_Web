@@ -82,12 +82,12 @@ export const HomePage = () => {
         {/* Navbar*/}
         <div className="w-full h-12 shadow border-b-2 flex justify-end items-center bg-white pr-5">
           <div>
-            <h1 className=" bg-gray-300 px-[18px] py-2 text-[18px] rounded-full cursor-pointer" onClick={() => setShowDropdown(!showDropdown)}>{email[0]}</h1>
+            <h1 className=" bg-yellow-300 px-[18px] py-2 text-[18px] rounded-full cursor-pointer" onClick={() => setShowDropdown(!showDropdown)}>{email[0]}</h1>
           </div>
         </div>
           {showDropdown && (
-            <div className="absolute right-10 top-12 bg-white py-5 rounded-md shadow-lg">
-             <button className=" flex justify-end items-center gap-2 hover:bg-red-300 px-4 py-2" onClick={()=>handleLogout()}><LogOut/>LogOut</button> 
+            <div className="absolute right-0 top-12 bg-white py-5 rounded-md shadow-lg">
+             <button className=" flex justify-end items-center gap-2 bg-red-500 mx-2 rounded-md text-white hover:bg-red-600 px-4 py-2" onClick={()=>handleLogout()}><LogOut/>LogOut</button> 
             </div>
           )}
 
