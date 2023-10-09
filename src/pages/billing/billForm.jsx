@@ -43,7 +43,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
     };
 
     addbill(data).then((res) => {
-      if (res.statusText === "OK") {
+      if (res.status === 200) {
         toast.success(res.data.success, { duration: 1500 });
         setViewMode("save")
         setinvoice(res.data.invoiceNumber)

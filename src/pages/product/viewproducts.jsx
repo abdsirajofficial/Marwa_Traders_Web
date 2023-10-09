@@ -47,7 +47,7 @@ export const ViewProducts = ({
     });
 
     deleteApi(`product/deleteProducts/${id}`).then((res) => {
-      if (res.statusText === "OK") {
+      if (res.status === 200) {
         toast.success("Material deleted successfully!", { duration: 1500 });
         setdelIsLoading((prevLoading) => {
           const newLoading = [...prevLoading];

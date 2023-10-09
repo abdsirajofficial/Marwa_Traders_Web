@@ -40,7 +40,7 @@ export const Newproduct = ({ setViewMode }) => {
     };
 
     addProduct(data).then((res) => {
-      if (res.statusText === 'OK') {
+      if (res.status === 200) {
         toast.success('Material added successfully!', { duration : 1500 });
       }
       else {
