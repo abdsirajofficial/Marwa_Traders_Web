@@ -102,12 +102,13 @@ export const ViewProducts = ({
         </div>
       </div>
 
-      <div className="w-full h-auto bg-white shadow-sm grid grid-cols-8 grid-rows-1 text-center rounded py-3 mt-3 font-semibold text-[13px] ">
+      <div className="w-full h-auto bg-white shadow-sm grid grid-cols-9 grid-rows-1 text-center rounded py-3 mt-3 font-semibold text-[13px] ">
         <p className="w-full col-span-2">Name</p>
         <p>Quantity</p>
         <p>UPVC/CPVC</p>
         <p>Mrp Rate</p>
         <p>Dis (-)</p>
+        <p>Add (+)</p>
         <p>Net Rate</p>
         <p>Action</p>
       </div>
@@ -117,7 +118,7 @@ export const ViewProducts = ({
           data.map((item, index) => (
             <div
               key={index}
-              className="grid grid-cols-8 space-x-2 text-center w-full text-[13px] bg-white shadow-sm  border-b py-3 hover:bg-zinc-50"
+              className="grid grid-cols-9 space-x-2 text-center w-full text-[13px] bg-white shadow-sm  border-b py-3 hover:bg-zinc-50"
             >
               <p className="w-full col-span-2 ">
                 {item.productName}
@@ -126,6 +127,7 @@ export const ViewProducts = ({
               <p className=" flex justify-center items-center">{item.category}</p>
               <p className=" flex justify-center items-center">{item.mrp}</p>
               <p className=" flex justify-center items-center">{item.discount}%</p>
+              <p className=" flex justify-center items-center">{item.addMargin}%</p>
               <p className=" flex justify-center items-center">{item.netRate.toFixed(2)}</p>
               <div className=" flex space-x-3 justify-center items-center">
                 <Pencil

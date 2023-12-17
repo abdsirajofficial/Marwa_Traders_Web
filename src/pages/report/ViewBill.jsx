@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ReactToPrint from "react-to-print";
-import { Printer, XCircle,} from "lucide-react";
+import { Pencil, Printer, XCircle,} from "lucide-react";
 import logoImage from "../../assets/logo.svg";
 import numWords from "num-words";
 
@@ -88,7 +88,7 @@ class ComponentToPrint extends React.Component {
             // Calculate the total for the current item
             const total = (
               item.quantity *
-              item.mrp *
+              item.netRate *
               (1 - item.discount / 100)
             ).toFixed(2);
 
@@ -100,7 +100,7 @@ class ComponentToPrint extends React.Component {
                   {item.category}
                 </td>
                 <td className="p-2">{item.quantity}</td>
-                <td className="p-2 border-x-2">{item.mrp}</td>
+                <td className="p-2 border-x-2">{item.netRate}</td>
                 <td className="p-2">{item.discount}%</td>
                 <td className="p-2 border-x-2">{total}</td>
               </tr>
@@ -121,7 +121,7 @@ class ComponentToPrint extends React.Component {
                           return (
                             acc +
                             item.quantity *
-                              item.mrp *
+                              item.netRate *
                               (1 - item.discount / 100)
                           );
                         }, 0)
@@ -131,7 +131,7 @@ class ComponentToPrint extends React.Component {
                             return (
                               acc +
                               item.quantity *
-                                item.mrp *
+                                item.netRate *
                                 (1 - item.discount / 100)
                             );
                           }, 0)
@@ -143,7 +143,7 @@ class ComponentToPrint extends React.Component {
                           return (
                             acc +
                             item.quantity *
-                              item.mrp *
+                              item.netRate *
                               (1 - item.discount / 100)
                           );
                         }, 0) *
@@ -155,7 +155,7 @@ class ComponentToPrint extends React.Component {
                           return (
                             acc +
                             item.quantity *
-                              item.mrp *
+                              item.netRate *
                               (1 - item.discount / 100)
                           );
                         }, 0)
@@ -165,7 +165,7 @@ class ComponentToPrint extends React.Component {
                             return (
                               acc +
                               item.quantity *
-                                item.mrp *
+                                item.netRate *
                                 (1 - item.discount / 100)
                             );
                           }, 0)
@@ -191,7 +191,7 @@ class ComponentToPrint extends React.Component {
               {ViewBillData
                 .map((item) => {
                   const total =
-                    item.quantity * item.mrp * (1 - item.discount / 100);
+                    item.quantity * item.netRate * (1 - item.discount / 100);
                   return isNaN(total) ? 0 : total;
                 })
                 .reduce((acc, total) => acc + total, 0)
@@ -207,7 +207,7 @@ class ComponentToPrint extends React.Component {
               {(
                 ViewBillData.reduce((acc, item) => {
                   return (
-                    acc + item.quantity * item.mrp * (1 - item.discount / 100)
+                    acc + item.quantity * item.netRate * (1 - item.discount / 100)
                   );
                 }, 0) *
                 (commonValues.gst / 100)
@@ -224,7 +224,7 @@ class ComponentToPrint extends React.Component {
                   ViewBillData.reduce((acc, item) => {
                     return (
                       acc +
-                      item.quantity * item.mrp * (1 - item.discount / 100)
+                      item.quantity * item.netRate * (1 - item.discount / 100)
                     );
                   }, 0) *
                   (commonValues.spl / 100)
@@ -244,7 +244,7 @@ class ComponentToPrint extends React.Component {
                       ViewBillData.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0)
                     ) +
@@ -252,7 +252,7 @@ class ComponentToPrint extends React.Component {
                       ViewBillData.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0)
                     ) *
@@ -262,7 +262,7 @@ class ComponentToPrint extends React.Component {
                     ViewBillData.reduce((acc, item) => {
                       return (
                         acc +
-                        item.quantity * item.mrp * (1 - item.discount / 100)
+                        item.quantity * item.netRate * (1 - item.discount / 100)
                       );
                     }, 0) *
                     (commonValues.spl / 100)
@@ -272,7 +272,7 @@ class ComponentToPrint extends React.Component {
                       ViewBillData.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0)
                     ) +
@@ -280,7 +280,7 @@ class ComponentToPrint extends React.Component {
                       ViewBillData.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0)
                     ) *
@@ -327,7 +327,7 @@ class ComponentToPrint extends React.Component {
                       ViewBillData.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0)
                     ) +
@@ -336,7 +336,7 @@ class ComponentToPrint extends React.Component {
                           return (
                             acc +
                             item.quantity *
-                              item.mrp *
+                              item.netRate *
                               (1 - item.discount / 100)
                           );
                         }, 0)
@@ -347,7 +347,7 @@ class ComponentToPrint extends React.Component {
                     ViewBillData.reduce((acc, item) => {
                       return (
                         acc +
-                        item.quantity * item.mrp * (1 - item.discount / 100)
+                        item.quantity * item.netRate * (1 - item.discount / 100)
                       );
                     }, 0) *
                       (commonValues.spl / 100)
@@ -357,7 +357,7 @@ class ComponentToPrint extends React.Component {
                       ViewBillData.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0)
                     ) +
@@ -366,7 +366,7 @@ class ComponentToPrint extends React.Component {
                           return (
                             acc +
                             item.quantity *
-                              item.mrp *
+                              item.netRate *
                               (1 - item.discount / 100)
                           );
                         }, 0)
@@ -417,6 +417,13 @@ export const ViewBill = ({
           >
             <XCircle />
             <p>Cancel</p>
+          </button>
+          <button
+            className="flex space-x-2 text-white bg-green-500 hover:bg-green-700 px-4 py-2 rounded-md"
+            onClick={() => handleClearData()}
+          >
+            <Pencil />
+            <p>Edit</p>
           </button>
           <ReactToPrint
             trigger={() => (

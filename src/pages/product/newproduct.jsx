@@ -7,16 +7,17 @@ export const Newproduct = ({ setViewMode }) => {
   const [quantity, setQuantity] = useState();
   const [mrp, setMRP] = useState();
   const [discount, setDiscount] = useState();
+  const [addMargin, setaddMargin] = useState();
   const [netRate, setnetRate] = useState();
   const [category, setCategory] = useState();
 
-  console.log(category)
   useEffect(() => {
-    if (mrp !== 0 && discount !== 0) {
+    if (mrp !== 0 && discount !== 0 && addMargin !==0) {
       const netRate = mrp * (1 - discount / 100);
-      setnetRate(netRate);
+      const saleRate = netRate*(1+addMargin/100)
+      setnetRate(saleRate);
     }
-  }, [mrp, discount]);
+  }, [mrp, discount, addMargin]);
 
   const handleSave = async () => {
     if (
@@ -24,6 +25,7 @@ export const Newproduct = ({ setViewMode }) => {
       quantity === 0 ||
       mrp === 0 ||
       discount === 0 ||
+      addMargin === 0 ||
       netRate === 0 ||
       category === ""
     ) {
@@ -35,6 +37,7 @@ export const Newproduct = ({ setViewMode }) => {
       quantity: parseInt(quantity),
       mrp: parseFloat(mrp),
       discount: parseFloat(discount),
+      addMargin: parseInt(addMargin),
       netRate: parseFloat(netRate),
       category: category,
     };
@@ -56,8 +59,11 @@ export const Newproduct = ({ setViewMode }) => {
             <h1 className="bg-red-400 py-1 px-2 rounded-lg">
               Dis(-): {discount}%
             </h1>
+            <h1 className="bg-green-400 py-1 px-2 rounded-lg">
+              ADD(+): {addMargin}%
+            </h1>
             <h1 className="bg-yellow-400 py-1 px-2 rounded-lg">
-              Net Rate: {mrp * (1 - discount / 100)}
+              Net Rate: {netRate}
             </h1>
           </div>
       <div className="flex justify-center items-center">
@@ -101,6 +107,16 @@ export const Newproduct = ({ setViewMode }) => {
               name="discount"
               value={discount}
               onChange={(e) => setDiscount(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-between items-center space-x-5">
+            <label htmlFor="quantity">Add Margin (+):</label>
+            <input
+              type="number"
+              className="rounded border-2 p-3 w-[300px]"
+              name="addMargin"
+              value={addMargin}
+              onChange={(e) => setaddMargin(e.target.value)}
             />
           </div>
           <div className="flex justify-between">

@@ -34,6 +34,8 @@ export const Billing = ({
     getProductBySearch(`product/getProductBySearch`, setallItem);
   },[]);
 
+  const gst = state.gst / 100;
+
   const handleInputChange = (e) => {
     const name = e.target.name;
     let value = e.target.value;
@@ -209,7 +211,7 @@ export const Billing = ({
         {data.map((item, index) => {
           return (
             <div
-              className="w-full h-auto bg-red-100 shadow-sm grid grid-cols-7 grid-rows-1 text-center rounded py-3  text-[14px] hover:bg-blue-200 cursor-pointer "
+              className="w-full h-auto bg-red-100 shadow-sm grid grid-cols-8 grid-rows-1 text-center rounded py-3  text-[14px] hover:bg-blue-200 cursor-pointer "
               key={index}
               onClick={() => handleSelected(item.id)}
             >
@@ -218,6 +220,7 @@ export const Billing = ({
               <p className=" flex justify-center items-center">{item.quantity}</p>
               <p className=" flex justify-center items-center">{item.mrp}</p>
               <p className=" flex justify-center items-center">{item.discount}%</p>
+              <p className=" flex justify-center items-center">{item.addMargin}%</p>
               <p className=" flex justify-center items-center">{item.netRate.toFixed(2)}</p>
             </div>
           );
@@ -228,11 +231,11 @@ export const Billing = ({
       {selectforvlaueEnter.length > 0 && (
         <div className="absolute top-[5rem] w-full left-0">
           {selectforvlaueEnter.map((item, index) => {
-            const total = (qty * item.mrp * (1 - disc / 100)).toFixed(2);
+            const total = (qty * item.netRate * (1 - disc / 100)).toFixed(2);
             const formattedTotal = isNaN(total) ? "0.00" : total; // Format total to 2 decimal places or '0.00' if not a number
             return (
               <div
-                className="w-full h-auto bg-blue-200 text-center shadow-sm grid grid-cols-8 grid-rows-1 rounded py-3 text-[14px]"
+                className="w-full h-auto bg-blue-200 text-center shadow-sm grid grid-cols-12 grid-rows-1 rounded py-3 text-[14px]"
                 key={index}
               >
                 <p className=" flex justify-center items-center col-span-2">{item.productName}</p>
@@ -256,6 +259,9 @@ export const Billing = ({
                   />
                 </div>
                 <p className=" flex justify-center items-center">{item.mrp}</p>
+                <p className=" flex justify-center items-center text-red-600 font-bold">{item.discount}%</p>
+                <p className=" flex justify-center items-center text-green-600 font-bold">{item.addMargin}%</p>
+                <p className=" flex justify-center items-center">{item.netRate}</p>
                 <div className="flex justify-center items-center">
                   <input
                     type="text"
@@ -275,7 +281,8 @@ export const Billing = ({
                   />
                   <p>%</p>
                 </div>
-                <p className=" flex justify-center items-center">{formattedTotal}</p>
+                <p className=" flex justify-center items-center text-red-600 font-bold">{formattedTotal}</p>
+                <p className=" flex justify-center items-center text-green-600 font-bold">{Math.round(formattedTotal * (1 + gst))}</p>
                 <p className="flex justify-center items-center text-red-600 cursor-pointer">
                   <XCircle onClick={() => setselectforvlaueEnter([])} />
                 </p>
@@ -285,13 +292,15 @@ export const Billing = ({
         </div>
       )}
 
-      <div className=" w-full h-auto bg-white shadow-sm grid grid-cols-8 grid-rows-1 text-center rounded py-3 my-5 font-semibold text-[14px] ">
+      <div className=" w-full h-auto bg-white shadow-sm grid grid-cols-9 grid-rows-1 text-center rounded py-3 my-5 font-semibold text-[14px] ">
         <p>S.No</p>
         <p className=" col-span-2">Product</p>
         <p>Quantity</p>
         <p>Rate</p>
         <p>Disc(-)</p>
+        {/* <p>Add Margin(+)</p>   */}
         <p>Total</p>
+        <p>Gst Total</p>
         <p>Action</p>
       </div>
 
@@ -300,21 +309,22 @@ export const Billing = ({
         {selectedItems.map((item, index) => {
           const total = (
             item.quantity *
-            item.mrp *
-            (1 - item.discount / 100)
+            item.netRate *
+            (1 - item.discount / 100 )
           ).toFixed(2);
           return (
-            <div className="w-full h-auto bg-white grid grid-cols-8 grid-rows-1 text-center shadow-sm  border-b rounded py-3 text-[14px] ">
+            <div className="w-full h-auto bg-white grid grid-cols-9 grid-rows-1 text-center shadow-sm  border-b rounded py-3 text-[14px] ">
               <p className=" flex justify-center items-center">{index + 1}</p>
-              <p className=" flex justify-center items-center col-span-2">
-                {item.productName}
-                {item.category}
+              <p className=" flex justify-center items-center col-span-2 space-x-2">
+               <span> {item.productName}</span>
+               <span>{item.category}</span> 
               </p>
               <p className=" flex justify-center items-center">{item.quantity}</p>
-              <p className=" flex justify-center items-center">{item.mrp}</p>
+              <p className=" flex justify-center items-center">{item.netRate}</p>
               <p className=" flex justify-center items-center">{item.discount}%</p>
               {/* <p>{(item.quantity * item.saleRate) - (item.saleRate * (item.discount / 100))}</p> */}
               <p className=" flex justify-center items-center">{total || 0}</p>
+              <p className=" flex justify-center items-center">{Math.round(total * (1 + gst))}</p>
               <p className=" flex justify-center items-center text-red-600">
                 <XCircle
                   onClick={() => handleSelectItem(index)}

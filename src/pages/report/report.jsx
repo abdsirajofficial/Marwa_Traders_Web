@@ -40,14 +40,14 @@ const ProductDetails = ({ invoiceNumber }) => {
             parseFloat(
               productData.reduce((acc, item) => {
                 return (
-                  acc + item.quantity * item.mrp * (1 - item.discount / 100)
+                  acc + item.quantity * item.netRate * (1 - item.discount / 100)
                 );
               }, 0)
             ) +
             parseFloat(
               productData.reduce((acc, item) => {
                 return (
-                  acc + item.quantity * item.mrp * (1 - item.discount / 100)
+                  acc + item.quantity * item.netRate * (1 - item.discount / 100)
                 );
               }, 0)
             ) *
@@ -55,7 +55,7 @@ const ProductDetails = ({ invoiceNumber }) => {
           ).toFixed(2) -
           (
             productData.reduce((acc, item) => {
-              return acc + item.quantity * item.mrp * (1 - item.discount / 100);
+              return acc + item.quantity * item.netRate * (1 - item.discount / 100);
             }, 0) *
             (commonValues.spl / 100)
           ).toFixed(2)
@@ -63,14 +63,14 @@ const ProductDetails = ({ invoiceNumber }) => {
             parseFloat(
               productData.reduce((acc, item) => {
                 return (
-                  acc + item.quantity * item.mrp * (1 - item.discount / 100)
+                  acc + item.quantity * item.netRate * (1 - item.discount / 100)
                 );
               }, 0)
             ) +
             parseFloat(
               productData.reduce((acc, item) => {
                 return (
-                  acc + item.quantity * item.mrp * (1 - item.discount / 100)
+                  acc + item.quantity * item.netRate * (1 - item.discount / 100)
                 );
               }, 0)
             ) *

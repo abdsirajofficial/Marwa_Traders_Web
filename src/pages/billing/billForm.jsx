@@ -154,7 +154,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
               // Calculate the total for the current item
               const total = (
                 item.quantity *
-                item.mrp *
+                item.netRate *
                 (1 - item.discount / 100)
               ).toFixed(2);
 
@@ -166,7 +166,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                     {item.category}
                   </td>
                   <td className="p-2">{item.quantity}</td>
-                  <td className="p-2 border-x-2">{item.mrp}</td>
+                  <td className="p-2 border-x-2">{item.netRate}</td>
                   <td className="p-2">{item.discount}%</td>
                   <td className="p-2 border-x-2">{total}</td>
                 </tr>
@@ -187,7 +187,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                             return (
                               acc +
                               item.quantity *
-                                item.mrp *
+                                item.netRate *
                                 (1 - item.discount / 100)
                             );
                           }, 0)
@@ -197,7 +197,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                               return (
                                 acc +
                                 item.quantity *
-                                  item.mrp *
+                                  item.netRate *
                                   (1 - item.discount / 100)
                               );
                             }, 0)
@@ -209,7 +209,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                             return (
                               acc +
                               item.quantity *
-                                item.mrp *
+                                item.netRate *
                                 (1 - item.discount / 100)
                             );
                           }, 0) *
@@ -221,7 +221,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                             return (
                               acc +
                               item.quantity *
-                                item.mrp *
+                                item.netRate *
                                 (1 - item.discount / 100)
                             );
                           }, 0)
@@ -231,7 +231,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                               return (
                                 acc +
                                 item.quantity *
-                                  item.mrp *
+                                  item.netRate *
                                   (1 - item.discount / 100)
                               );
                             }, 0)
@@ -257,7 +257,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                 {selectedItems
                   .map((item) => {
                     const total =
-                      item.quantity * item.mrp * (1 - item.discount / 100);
+                      item.quantity * item.netRate * (1 - item.discount / 100);
                     return isNaN(total) ? 0 : total;
                   })
                   .reduce((acc, total) => acc + total, 0)
@@ -273,7 +273,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                 {(
                   selectedItems.reduce((acc, item) => {
                     return (
-                      acc + item.quantity * item.mrp * (1 - item.discount / 100)
+                      acc + item.quantity * item.netRate * (1 - item.discount / 100)
                     );
                   }, 0) *
                   (state.gst / 100)
@@ -290,7 +290,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                     selectedItems.reduce((acc, item) => {
                       return (
                         acc +
-                        item.quantity * item.mrp * (1 - item.discount / 100)
+                        item.quantity * item.netRate * (1 - item.discount / 100)
                       );
                     }, 0) *
                     (state.spl / 100)
@@ -310,7 +310,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                         selectedItems.reduce((acc, item) => {
                           return (
                             acc +
-                            item.quantity * item.mrp * (1 - item.discount / 100)
+                            item.quantity * item.netRate * (1 - item.discount / 100)
                           );
                         }, 0)
                       ) +
@@ -318,7 +318,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                         selectedItems.reduce((acc, item) => {
                           return (
                             acc +
-                            item.quantity * item.mrp * (1 - item.discount / 100)
+                            item.quantity * item.netRate * (1 - item.discount / 100)
                           );
                         }, 0)
                       ) *
@@ -328,7 +328,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                       selectedItems.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0) *
                       (state.spl / 100)
@@ -338,7 +338,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                         selectedItems.reduce((acc, item) => {
                           return (
                             acc +
-                            item.quantity * item.mrp * (1 - item.discount / 100)
+                            item.quantity * item.netRate * (1 - item.discount / 100)
                           );
                         }, 0)
                       ) +
@@ -346,7 +346,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                         selectedItems.reduce((acc, item) => {
                           return (
                             acc +
-                            item.quantity * item.mrp * (1 - item.discount / 100)
+                            item.quantity * item.netRate * (1 - item.discount / 100)
                           );
                         }, 0)
                       ) *
@@ -393,7 +393,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                         selectedItems.reduce((acc, item) => {
                           return (
                             acc +
-                            item.quantity * item.mrp * (1 - item.discount / 100)
+                            item.quantity * item.netRate * (1 - item.discount / 100)
                           );
                         }, 0)
                       ) +
@@ -402,7 +402,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                             return (
                               acc +
                               item.quantity *
-                                item.mrp *
+                                item.netRate *
                                 (1 - item.discount / 100)
                             );
                           }, 0)
@@ -413,7 +413,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                       selectedItems.reduce((acc, item) => {
                         return (
                           acc +
-                          item.quantity * item.mrp * (1 - item.discount / 100)
+                          item.quantity * item.netRate * (1 - item.discount / 100)
                         );
                       }, 0) *
                         (state.spl / 100)
@@ -423,7 +423,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                         selectedItems.reduce((acc, item) => {
                           return (
                             acc +
-                            item.quantity * item.mrp * (1 - item.discount / 100)
+                            item.quantity * item.netRate * (1 - item.discount / 100)
                           );
                         }, 0)
                       ) +
@@ -432,7 +432,7 @@ export const BillForm = ({ setViewMode, selectedItems, state, setState, setinvoi
                             return (
                               acc +
                               item.quantity *
-                                item.mrp *
+                                item.netRate *
                                 (1 - item.discount / 100)
                             );
                           }, 0)
